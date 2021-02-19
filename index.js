@@ -6,6 +6,7 @@ for(var i=0;i<numberOfDrums;i++)
   document.querySelectorAll("button")[i].addEventListener("click",function()
   {
     makeSound(this.innerHTML);
+    addAnimation(this.innerHTML);
   });
 }
 
@@ -13,6 +14,7 @@ for(var i=0;i<numberOfDrums;i++)
 document.addEventListener("keypress",function(event)
   {
     makeSound(event.key);
+    addAnimation(event.key);
   }
 );
 
@@ -49,9 +51,19 @@ function makeSound(key)
       audio.play();
 
   }
-
-
-
-
-
 }
+
+function addAnimation(currentKey)
+{
+  var activeKey=document.querySelector("."+currentKey);
+  activeKey.classList.add("pressed");
+  
+  setTimeout(function()
+  {
+    activeKey.classList.remove("pressed");
+  },100);
+}
+
+
+
+
